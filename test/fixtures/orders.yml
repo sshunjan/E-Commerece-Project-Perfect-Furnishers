@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  tax: one
+  total_price: 9.99
+  status: MyString
+
+two:
+  user: two
+  tax: two
+  total_price: 9.99
+  status: MyString
