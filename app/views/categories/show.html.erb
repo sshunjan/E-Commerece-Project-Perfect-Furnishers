@@ -1,0 +1,13 @@
+<% products = Product.where(category_id: @category)%>
+<div class="container">
+  <div class="row">
+    <%  products.each do |product| %>
+      <div class="product">
+      <%= image_tag product.image.thumb.url%>
+        <div class="caption">
+        <h3><%= link_to product.name, product%></h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
