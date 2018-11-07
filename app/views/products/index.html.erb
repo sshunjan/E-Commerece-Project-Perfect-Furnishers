@@ -1,8 +1,12 @@
-<h1>Products Index</h1>
-
-<div>
-  <% @products.each do |product| %>
-    <%= image_tag product.image.thumb.url%>
-    <h3><%= link_to product.name, product%></h3>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="product">
+      <%= image_tag product.image.thumb.url%>
+        <div class="caption">
+        <h3><%= link_to product.name, product%></h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
