@@ -4,4 +4,8 @@ class Product < ApplicationRecord
   validates :name, uniqueness:true
 
   belongs_to :category
+  has_many :ordered_products, dependent: :destroy
+  has_many :orders, through: :ordered_products, dependent: :destroy
+
+  mount_uploader :image, ImageUploader
 end
