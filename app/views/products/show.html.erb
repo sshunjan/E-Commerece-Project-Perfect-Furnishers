@@ -1,4 +1,4 @@
-<h4 class="display-4"><%= @product.name%> <small class="text-muted"> in <%= @product.category.name%></small></h4>
+<h4 class="display-4"><%= @product.name%> <small class="text-muted"> in <%= link_to @product.category.name, @product.category%></small></h4>
 <div class="row justify-content-around">
   <div class="col-6 mt-4">
     <%= image_tag @product.image.url%>
