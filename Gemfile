@@ -44,8 +44,7 @@ gem "mini_magick" # Image Tools
 gem "image_magick" # Image Tools
 
 gem 'activeadmin_froala_editor' # WYSIWYG for Active Admin
-
-gem 'jquery'
+gem 'jquery' # jQuery
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
