@@ -2,9 +2,7 @@
 
 <div>
   <% @products.each do |product| %>
+    <%= image_tag product.image.thumb.url%>
     <h3><%= link_to product.name, product%></h3>
-    <h4><%= product.category.name%></h4>
-    <h4><%= product.price%></h4>
-    <h4><%= product.image%></h4>
   <% end %>
 </div>

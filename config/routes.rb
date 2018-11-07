@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   get ':permalink', to: 'pages#permalink'
 
-  root 'pages#about'
+  root 'products#index'
 end
