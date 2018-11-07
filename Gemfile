@@ -36,8 +36,12 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'activeadmin'
-gem 'devise'
+gem 'activeadmin'   # Admin Dashboard
+gem 'devise' # User Auth
+
+gem 'carrierwave' # File Upload
+gem "mini_magick" # Image Tools
+gem "image_magick" # Image Tools
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
