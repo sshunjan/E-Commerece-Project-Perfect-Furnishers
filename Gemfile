@@ -43,6 +43,9 @@ gem 'carrierwave' # File Upload
 gem "mini_magick" # Image Tools
 gem "image_magick" # Image Tools
 
+gem 'activeadmin_froala_editor' # WYSIWYG for Active Admin
+gem 'jquery' # jQuery
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
