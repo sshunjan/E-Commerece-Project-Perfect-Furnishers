@@ -1,0 +1,17 @@
+<header class="jumbotron">
+
+<div class="row">
+
+<% @categories.each do |category| %>
+
+    <div class="cat-icon">
+      <% if !category.icon.url.nil? %>
+        <%= image_tag category.icon.url %>
+      <%end%>
+      <div class="text-center"><%= link_to category.name, category%></div>
+    </div>
+
+<%end%>
+</div>
+
+</header>
