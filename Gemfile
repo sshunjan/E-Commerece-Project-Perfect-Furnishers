@@ -46,7 +46,9 @@ gem "image_magick" # Image Tools
 gem 'activeadmin_froala_editor' # WYSIWYG for Active Admin
 gem 'jquery-rails' # jQuery
 
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.1.3' # bootstrap gem
+
+gem 'kaminari' # pagination
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
