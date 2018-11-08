@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:show, :index]
   resources :categories, only: [:show, :index]
+  resources :pages, only: [:show, :index]
 
   get ':permalink', to: 'pages#permalink'
 
