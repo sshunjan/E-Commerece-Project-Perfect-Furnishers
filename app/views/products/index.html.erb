@@ -1,4 +1,10 @@
-<div class="container">
+<div class="container clearfix col-9 float-right">
+  <% if(params[:filter]) %>
+  <div class="alert alert-dark mt-3">
+    <% status = StatusType.where(id: params[:filter]).first()%>
+    Sorting By: <%= status.name %>
+  </div>
+  <% end %>
   <div class="row">
     <% @products.each do |product| %>
       <div class="product">

@@ -1,0 +1,5 @@
+<ul class="list-group list-group-flush">
+  <% @status_types.each do |status| %>
+    <li class="list-group-item"><label><%= check_box_tag "filter", status.id%> <%= status.name%></label></li>
+  <% end %>
+</ul>
