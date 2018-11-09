@@ -13,9 +13,27 @@
 
     <%= render partial: 'shared/navbar'%>
 
-    <div class='container'>
+    <div class='container clearfix'>
       <% @categories = Category.all() %>
       <%= render template: "categories/index", collection: @categories%>
+
+
+      <% if (!params[:permalink]) %>
+        <div class="alert alert-dark w-25 p-3 float-left mt-4">
+          <form action="<%= products_path %>"type="Post">
+            <div class="display-4">Sort</div><br>
+            <div class="mr-10">
+              <% @status_types = StatusType.all() %>
+              <%= render template: 'status_types/index', collection: @status_types%>
+            </div>
+            <button type="submit" class="btn btn-primary float-right mt-5">Sort</button>
+          <form>
+          <form action="<%= products_path %>" type="Post">
+            <button type="submit" class="btn btn-primary float-left mt-5">All Products</button>
+          <form>
+        </div>
+      <%end%>
+
       <%= yield %>
     </div>
 
