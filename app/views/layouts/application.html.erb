@@ -10,9 +10,10 @@
   </head>
 
   <body>
-  <%= render partial: 'shared/navbar'%>
-    <div class='container'>
 
+    <%= render partial: 'shared/navbar'%>
+
+    <div class='container'>
       <% @categories = Category.all() %>
       <%= render template: "categories/index", collection: @categories%>
       <%= yield %>
@@ -22,7 +23,6 @@
       <div class="container-fluid">
         <p class="m-0 text-center text-white">Copyright &copy; Perfect Furnishers 2018</p>
       </div>
-      <!-- /.container -->
     </footer>
   </body>
 </html>
