@@ -9,7 +9,7 @@ class CartController < ApplicationController
     session[:cart] ||= []
     #session[:cart] = []
     session[:cart] << {:id =>params[:id], :qty =>params[:quantity], :price =>params[:price]}
-    redirect_to root_path
+    redirect_to cart_index_path
   end
 
   def removeFromCart
@@ -18,6 +18,7 @@ class CartController < ApplicationController
     else
       session[:cart][params[:number].to_i]["qty"] = params[:qty].to_i
     end
+
     redirect_to cart_index_path
   end
 
