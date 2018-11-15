@@ -2,31 +2,7 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="<%= root_path%>">PERFECT FURNISHERS</a>
 
-        <div class="form w-100">
-          <form Type="Post" action="<%= root_path %>">
-            <div class="form-row">
-              <div class="col-8 ml-5">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <select name="category" class="custom-select" id="inlineFormCustomSelect">
-                        <option selected>Choose...</option>
-                        <% @categories.each do |category| %>
-                        <option value="<%= category.id%>"><%= category.name%></option>
-                        <% end%>
-                      </select>
-                    </div>
-                  </div>
-                   <label name="search" class="sr-only mb-2" for="inlineFormInputGroup">Search</label>
-                  <input name="search" type="text" class="form-control p-4 " id="inlineFormInputGroup" placeholder="Search">
-                </div>
-              </div>
-              <div class="col-3">
-                <button type="submit" class="btn btn-dark mb-2 mt-2 ">Search</button>
-              </div>
-            </div>
-          </form>
-        </div>
+        <%= render template: 'search/index'%>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
