@@ -1,0 +1,25 @@
+<div class="form w-100">
+  <form Type="Post" action="<%= results_search_index_path %>">
+    <div class="form-row">
+      <div class="col-8 ml-5">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <select name="category" class="custom-select" id="inlineFormCustomSelect">
+                <option value="none" selected>Choose...</option>
+                <% @categories.each do |category| %>
+                <option value="<%= category.id%>"><%= category.name%></option>
+                <% end%>
+              </select>
+            </div>
+          </div>
+            <label name="search" class="sr-only mb-2" for="inlineFormInputGroup">Search</label>
+          <input name="search" type="text" class="form-control p-4 " id="inlineFormInputGroup" placeholder="Search">
+        </div>
+      </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-dark mb-2 mt-2 ">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
