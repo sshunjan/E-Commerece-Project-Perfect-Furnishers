@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get 'cart/add_to_cart', to: "cart#addToCart"
+  get 'cart/remove_from_cart', to: "cart#removeFromCart"
+
+
   resources :products, only: [:show, :index]
   resources :categories, only: [:show, :index]
   resources :pages, only: [:show, :index]
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
       get 'results'
     end
   end
+  resources :cart, only: [:index]
 
   #get 'search/', to: 'search#show', as: 'search'
 
