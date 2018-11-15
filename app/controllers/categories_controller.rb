@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-
   def index
     @categories = Category.all()
   end
@@ -8,4 +7,5 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @products = Product.where(category_id: @category).page(params[:page]).per(9)
   end
+
 end
