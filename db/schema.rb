@@ -102,11 +102,11 @@ ActiveRecord::Schema.define(version: 2018_11_16_170630) do
   end
 
   create_table "taxes", force: :cascade do |t|
+    t.string "province"
     t.decimal "GST"
     t.decimal "PST"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "province"
   end
 
   create_table "user_meta", force: :cascade do |t|
