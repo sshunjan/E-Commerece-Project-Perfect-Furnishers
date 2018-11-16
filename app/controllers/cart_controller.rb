@@ -1,5 +1,6 @@
 class CartController < ApplicationController
   def index
+    add_breadcrumb "Cart"
   end
 
   def show

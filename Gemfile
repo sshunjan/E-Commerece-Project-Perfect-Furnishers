@@ -50,6 +50,8 @@ gem 'bootstrap', '~> 4.1.3' # bootstrap gem
 
 gem 'kaminari' # pagination
 
+gem "breadcrumbs_on_rails"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

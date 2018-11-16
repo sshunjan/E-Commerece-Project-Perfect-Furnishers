@@ -16,6 +16,10 @@
     <div class='container clearfix'>
       <%= render template: "categories/index", collection: @categories%>
 
+      <ol class="breadcrumb">
+        <%= render_breadcrumbs %>
+      </ol>
+
       <% if ((!params[:permalink]) && !(params[:controller] == "products" && params[:action] == "show") && params[:controller] != "cart")%>
         <div class="alert alert-dark w-25 p-3 float-left mt-4">
           <form action="<%= products_path %>"type="Post">

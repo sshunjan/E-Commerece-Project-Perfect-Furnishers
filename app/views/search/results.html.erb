@@ -1,1 +1,5 @@
-<%= render template: 'products/index', collection: @products%>
+<% if @products.any? %>
+  <%= render template: 'products/index', collection: @products%>
+<% else %>
+  <div class='m-5 p-5'><h2>Sorry!! No results found.</h2></div>
+<% end %>
