@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'cart/add_to_cart', to: "cart#addToCart"
   get 'cart/remove_from_cart', to: "cart#removeFromCart"
+  get 'checkout' , to:"cart#checkout"
 
 
   resources :products, only: [:show, :index]

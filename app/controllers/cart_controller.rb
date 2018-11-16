@@ -3,9 +3,6 @@ class CartController < ApplicationController
     add_breadcrumb "Cart"
   end
 
-  def show
-  end
-
   def addToCart
     session[:cart] ||= []
     #session[:cart] = []
@@ -23,5 +20,9 @@ class CartController < ApplicationController
     redirect_to cart_index_path
   end
 
+  def checkout
+    add_breadcrumb "Cart", cart_index_path
+    add_breadcrumb "Checkout", checkout_path
+  end
 
 end
