@@ -1,41 +1,38 @@
 <h1>Cart</h1>
 
-<% if session[:cart] %>
-  <%if session[:cart] != []%>
-
-    <table class="table" id="cart_table">
-      <thead>
+<%if session[:cart] && session[:cart] != []%>
+  <table class="table" id="cart_table">
+    <thead>
+      <tr>
+      <th scope="col">Image</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% rank = -1; %>
+    <%session[:cart].each do |item|%>
+      <% @product = Product.find(item["id"])%>
+      <%rank = rank.to_i + 1%>
+      <form method="get" action="<%= cart_remove_from_cart_path %>">
         <tr>
-        <th scope="col">Image</th>
-          <th scope="col">Product Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col"></th>
+          <input name="number" type="hidden" value="<%=rank%>">
+          <td><%= image_tag @product.image.thumb.url%></td>
+          <td><%=link_to @product.name, @product%></td>
+          <td>$<%=item["price"]%></td>
+          <td><input name ="qty" id="qty" type="number" value ="<%=item["qty"]%>"></td>
+          <td><button class="btn" type="submit">Change Quantity</button></td>
+          <td><button name="submit" class="btn" type="submit" value="Remove">Remove</button></td>
         </tr>
-      </thead>
-      <tbody>
-      <% rank = -1; %>
-      <%session[:cart].each do |item|%>
-        <% @product = Product.find(item["id"])%>
-        <%rank = rank.to_i + 1%>
-        <form method="get" action="<%= cart_remove_from_cart_path %>">
-          <tr>
-            <input name="number" type="hidden" value="<%=rank%>">
-            <td><%= image_tag @product.image.thumb.url%></td>
-            <td><%=link_to @product.name, @product%></td>
-            <td>$<%=item["price"]%></td>
-            <td><input name ="qty" id="qty" type="number" value ="<%=item["qty"]%>"></td>
-            <td><button class="btn" type="submit">Change Quantity</button></td>
-            <td><button name="submit" class="btn" type="submit" value="Remove">Remove</button></td>
-          </tr>
-        </form>
-        <%end%>
-      </tbody>
-    </table>
-    <a class="btn btn-secondary btn-lg btn-block" href="<%= checkout_path%>" role="button">Checkout >></a>
-  <%else%>
-    <div class='m-5 p-5'><h1>Oops! No items in the cart.</h1></div>
-  <%end%>
-<% end %>
+      </form>
+      <%end%>
+    </tbody>
+  </table>
+  <a class="btn btn-secondary btn-lg btn-block" href="<%= checkout_path%>" role="button">Checkout >></a>
+<%else%>
+  <div class='m-5 p-5'><h1>Oops! No items in the cart.</h1></div>
+<%end%>
 
 

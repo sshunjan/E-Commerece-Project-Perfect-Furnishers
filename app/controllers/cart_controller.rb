@@ -3,6 +3,9 @@ class CartController < ApplicationController
     add_breadcrumb "Cart"
   end
 
+  def show
+  end
+
   def addToCart
     session[:cart] ||= []
     #session[:cart] = []
