@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get 'profile/index', to: "profile#index"
   get 'profile/update', to: "profile#update"
 
+  #Orders
+  get 'order/add_order', to: 'order#add_order'
+
 
   resources :products, only: [:show, :index]
   resources :categories, only: [:show, :index]
@@ -28,7 +31,7 @@ Rails.application.routes.draw do
   end
   resources :cart, only: [:index]
 
-  
+
   get ':permalink', to: 'pages#permalink'
 
   root 'products#index'

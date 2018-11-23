@@ -1,4 +1,4 @@
-ActiveAdmin.register Tax do
+ActiveAdmin.register Tax, :as => "State" do
   permit_params :province, :GST, :PST
 
   index do

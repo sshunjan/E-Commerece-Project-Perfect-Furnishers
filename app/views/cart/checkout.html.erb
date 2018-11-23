@@ -34,7 +34,7 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn">Place Order</button>
+      <form method="get" action="<%= order_add_order_path%>"><button name ="checkout" value="place_order" class="btn">Place Order</button>
     </div>
   </div>
 <% else %>
@@ -113,6 +113,16 @@
           <th></th>
           <th scope="row">Subtotal: </th>
           <td>$<%= subtotal%></td>
+        </tr>
+        <tr>
+          <th></th>
+          <th scope="row">Taxes: </th>
+          <td>$<%= @taxes*subtotal %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <th scope="row">Total: </th>
+          <td>$<%= session[:total_price] = @taxes+subtotal %></td>
         </tr>
       </tbody>
     </table>

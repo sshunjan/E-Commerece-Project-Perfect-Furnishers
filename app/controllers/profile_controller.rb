@@ -16,8 +16,8 @@ class ProfileController < ApplicationController
       profile.address = params[:address]
       profile.city = params[:city]
       profile.state = params[:province]
-      profile.zip = params[:zip]
-      profile.phone = params[:zip]
+      profile.zip = params[:zip].to_i
+      profile.phone = params[:zip].to_i
       profile.save()
 
       redirect_to profile_index_path
