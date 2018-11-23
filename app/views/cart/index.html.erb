@@ -30,7 +30,11 @@
       <%end%>
     </tbody>
   </table>
-  <a class="btn btn-secondary btn-lg btn-block" href="<%= checkout_path%>" role="button">Checkout >></a>
+  <% if user_signed_in?%>
+    <a class="btn btn-secondary btn-lg btn-block" href="<%= checkout_path%>" role="button">Checkout >></a>
+  <% else%>
+    <a class="btn btn-secondary btn-lg btn-block" href="<%= new_user_session_path %>" role="button">Please sign in to continue >></a>
+  <% end%>
 <%else%>
   <div class='m-5 p-5'><h1>Oops! No items in the cart.</h1></div>
 <%end%>

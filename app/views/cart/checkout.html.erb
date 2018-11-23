@@ -1,76 +1,131 @@
-<div class="row">
-  <div class="col-8 p-5">
-    <div class="display-4">Fill Details</div>
-      <form>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" placeholder="First Name">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <% @provinces.each do |province| %>
-              <option value="<%= province.id%>"><%= province.province%></option>
-            <% end%>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
-        </div>
-      </div>
-      <div class="form-group">
-      </div>
-      <button type="submit" class="btn btn-secondary">Place Order</button>
-    </form>
-    </div>
-  <div class="col-3 p-5">
-    <div class="display-4">Invoice</div>
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Qty</th>
-            <th scope="col">Price</th>
-          </tr>
-        </thead>
+<% if user_signed_in?%>
+  <div class="row float-left">
+    <div class="col-12 p-5">
+      <h3>Please check your details:</h3>
+      <table class="table">
         <tbody>
-          <% subtotal = 0 %>
-          <%session[:cart].each do |item|%>
-            <% @product = Product.find(item["id"])%>
-            <tr>
-              <td><%= link_to @product.name, @product%></td>
-              <td><%=item["qty"]%></td>
-              <td><%=item["price"]%></td>
-              <% subtotal += item["price"].to_f%>
-            </tr>
-          <%end%>
           <tr>
-            <th></th>
-            <th scope="row">Subtotal: </th>
-            <td>$<%= subtotal%></td>
+            <th>Full Name</th>
+            <td><%= @profile.name%></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= @profile.user.email%></td>
+          </tr>
+          <tr>
+            <th>Contact</th>
+            <td><%= @profile.phone%></td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td><%= @profile.address%></td>
+          </tr>
+          <tr>
+            <th>City</th>
+            <td><%= @profile.city%></td>
+          </tr>
+          <tr>
+            <th>Province</th>
+            <td><%= Tax.where(id: @profile.state).name%></td>
+          </tr>
+          <tr>
+            <th>Zip</th>
+            <td><%= @profile.zip%></td>
           </tr>
         </tbody>
       </table>
+      <form method="get" action="<%= order_add_order_path%>"><button name ="checkout" value="place_order" class="btn">Place Order</button>
+    </div>
   </div>
+<% else %>
+  <div class="row">
+    <div class="col-8 p-5">
+      <div class="display-4">Fill Details</div>
+        <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Address 2</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <% @provinces.each do |province| %>
+                <option value="<%= province.id%>"><%= province.province%></option>
+              <% end%>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <button type="submit" class="btn btn-secondary">Place Order</button>
+      </form>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="row float-right">
+<div class="col-3 p-5">
+  <div class="display-4">Invoice</div>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% subtotal = 0 %>
+        <%session[:cart].each do |item|%>
+          <% @product = Product.find(item["id"])%>
+          <tr>
+            <td><%= link_to @product.name, @product%></td>
+            <td><%=item["qty"]%></td>
+            <td><%=item["price"]%></td>
+            <% subtotal += item["price"].to_f%>
+          </tr>
+        <%end%>
+        <tr>
+          <th></th>
+          <th scope="row">Subtotal: </th>
+          <td>$<%= subtotal%></td>
+        </tr>
+        <tr>
+          <th></th>
+          <th scope="row">Taxes: </th>
+          <td>$<%= @taxes*subtotal %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <th scope="row">Total: </th>
+          <td>$<%= session[:total_price] = @taxes+subtotal %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>

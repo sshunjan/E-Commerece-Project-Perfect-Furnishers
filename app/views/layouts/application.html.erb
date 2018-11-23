@@ -15,12 +15,27 @@
 
     <div class='container clearfix'>
       <%= render template: "categories/index", collection: @categories%>
+      <% if notice %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= notice%>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <%end%>
+
+      <% if alert %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= alert%>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <%end%>
 
       <ol class="breadcrumb">
         <%= render_breadcrumbs %>
       </ol>
-
-      <%# <% if ((!params[:permalink]) && !(params[:controller] == "products" && params[:action] == "show") && params[:controller] != "cart")%>
       <% if (params["controller"] == "products" || params["controller"] == "categories" || params["controller"] == "search")%>
         <div class="alert alert-dark w-25 p-3 float-left mt-4">
           <form action="<%= products_path %>"type="Post">
