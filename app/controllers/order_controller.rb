@@ -7,7 +7,7 @@ class OrderController < ApplicationController
     if(params[:checkout])
       # Order Table
       new_order = Order.new(user_id: 1,
-                        total_price: session[:total_price],
+                        total_price: session[:total_price].to_f,
                         status_type_id: @order_status.id)
       new_order.save()
 
@@ -16,22 +16,27 @@ class OrderController < ApplicationController
       session[:cart].each do |item|
         product = Product.find(item["id"])
 
-        ordered_product = OrderedProduct.new()
-        ordered_product.order_id = order.id
-        ordered_product.product_id = product.id
-        ordered_product.price = item[:price]
-        ordered_product.quantity = item[:quantity]
-
+        ordered_product = OrderedProduct.new(order_id: new_order.id,
+                                             product_id: product.id,
+                                             price: item["price"].to_f,
+                                             quantity: item["qty"].to_i)
         ordered_product.save()
+
+        if(!ordered_product.save!)
+          flash[:alert] = ordered_product.errors.message
+        end
+
       end
 
-      if(@order.save!)
+      if(new_order.save!)
         flash[:notice] = "Your order has been placed."
+        session[:cart] = []
+        redirect_to root_path
       end
 
     end
 
-    redirect_to root_path
+
   end
 
   private
