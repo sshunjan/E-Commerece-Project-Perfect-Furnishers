@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_170630) do
+ActiveRecord::Schema.define(version: 2018_11_23_004235) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -89,6 +89,19 @@ ActiveRecord::Schema.define(version: 2018_11_16_170630) do
     t.index ["status_type_id"], name: "index_products_on_status_type_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "name"
+    t.text "address"
+    t.text "city"
+    t.text "state"
+    t.integer "zip"
+    t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "status_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -102,24 +115,11 @@ ActiveRecord::Schema.define(version: 2018_11_16_170630) do
   end
 
   create_table "taxes", force: :cascade do |t|
-    t.string "province"
     t.decimal "GST"
     t.decimal "PST"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_meta", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.integer "phone"
-    t.string "address"
-    t.string "email"
-    t.string "credit_card_number"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_meta_on_user_id"
+    t.string "province"
   end
 
   create_table "users", force: :cascade do |t|
