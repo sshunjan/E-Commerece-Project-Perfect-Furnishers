@@ -26,7 +26,7 @@
           </tr>
           <tr>
             <th>Province</th>
-            <td><%= Tax.where(id: @profile.state).name%></td>
+            <td><%= @profile.tax.province%></td>
           </tr>
           <tr>
             <th>Zip</th>
@@ -112,12 +112,12 @@
         <tr>
           <th></th>
           <th scope="row">Subtotal: </th>
-          <td>$<%= subtotal%></td>
+          <td>$<%= subtotal.round(2)%></td>
         </tr>
         <tr>
           <th></th>
           <th scope="row">Taxes: </th>
-          <td>$<%= @taxes*subtotal %></td>
+          <td>$<%= (@taxes*subtotal).round(2) %></td>
         </tr>
         <tr>
           <th></th>

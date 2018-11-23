@@ -27,7 +27,7 @@ class CartController < ApplicationController
     add_breadcrumb "Cart", cart_index_path
     add_breadcrumb "Checkout", checkout_path
 
-    province = Tax.find(@profile.state)
+    province = @profile.tax
     @taxes = (province.GST + province.PST)
   end
 
