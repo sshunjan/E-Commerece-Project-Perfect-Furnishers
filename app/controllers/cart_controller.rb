@@ -8,8 +8,8 @@ class CartController < ApplicationController
 
   def addToCart
     session[:cart] ||= []
-    #session[:cart] = []
     session[:cart] << {:id =>params[:id], :qty =>params[:quantity], :price =>params[:price]}
+
     redirect_to cart_index_path
   end
 

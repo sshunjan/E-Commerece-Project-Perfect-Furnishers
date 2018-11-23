@@ -5,14 +5,17 @@
   </div>
   <div class="col-6 mt-4">
     <%= @product.description%><br>
-    $ <%= @product.price%>
+    $ <%= @product.price%><br>
 
-    <form class="form-check form-check-inline float-right mt-5" method="Get" action="<%= cart_add_to_cart_path%>">
-      <label for="quantity" name="quantity">Quantity</label>
-      <input name="quantity" id="quantity" class="form-control m-2" type="number" value="1" >
-      <input name="id" type="hidden" value="<%= @product.id%>">
-      <input name="price" type="hidden" value="<%= @product.price%>">
-      <button class="btn">Add To Cart</button>
-    </div>
+    <form></form>
+
+    <%= form_tag(cart_add_to_cart_path, method: "get", class:"form-check form-check-inline float-right mt-5" ) do %>
+      <%= label_tag("quantity"," Quantity ") %>
+      <%= number_field_tag("quantity", 1, class:"form-control m-2", size:2) %>
+      <%= hidden_field_tag("id", @product.id)%>
+      <%= hidden_field_tag("price", @product.price)%>
+      <%= submit_tag("Add To Cart", class:"btn") %>
+    <% end %>
+
   </div>
 </div>

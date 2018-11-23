@@ -18,8 +18,6 @@ Rails.application.routes.draw do
   end
   resources :cart, only: [:index]
 
-  #get 'search/', to: 'search#show', as: 'search'
-
   get ':permalink', to: 'pages#permalink'
 
   root 'products#index'
