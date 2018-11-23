@@ -1,9 +1,14 @@
 <div class="container clearfix col-9 float-right">
   <div class="row">
     <% @products.each do |product| %>
-      <div class="product">
-      <%= image_tag product.image.thumb.url%>
-        <h5><%= link_to product.name, product%></h5>
+      <div class="card m-4" style="width:200px; position:relative;">
+        <a class="nav-link" href = "<%= product_path(:id => product.id)%>" >
+          <%= image_tag product.image.thumb.url, class:"card-img-top"%>
+          <div class="card-body">
+            <h4 class="card-title"><%=  product.name %></h4>
+            <p class="card-text" style="position:absolute; bottom:0; right:0;">$<%= product.price%></p>
+          </div>
+        </a>
       </div>
     <% end %>
   </div>

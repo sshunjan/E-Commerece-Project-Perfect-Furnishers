@@ -1,6 +1,6 @@
 class OrderedProduct < ApplicationRecord
 
-  validates :product, :order, :quantity, :price, presence: true
+  validates :product_id, :order_id, :quantity, :price, presence: true
   validates :quantity, numericality: {greater_than: 0}
 
   belongs_to :product

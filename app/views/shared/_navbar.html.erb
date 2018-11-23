@@ -23,4 +23,15 @@
           </ul>
         </div>
       </div>
+      <% if user_signed_in?%>
+        <%if @profile %>
+          <a class="btn nav-link" href="<%= profile_index_path %>">My Profile </a>
+        <% else %>
+          <a class="btn nav-link" href="<%= profile_create_path %>">My Profile </a>
+        <% end %>
+        <%=link_to "Logout" , destroy_user_session_path, method: :delete, class:"btn nav-link" %>
+      <% else %>
+        <a class="btn nav-link" href="<%= new_user_registration_path %>">Sign Up </a>
+        <a class="btn nav-link" href="<%= new_user_session_path %>">Sign In </a>
+      <% end %>
     </nav>

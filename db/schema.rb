@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_173128) do
+ActiveRecord::Schema.define(version: 2018_11_23_171002) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -59,12 +59,11 @@ ActiveRecord::Schema.define(version: 2018_11_09_173128) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "tax_id"
     t.decimal "total_price"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tax_id"], name: "index_orders_on_tax_id"
+    t.integer "status_type_id"
+    t.index ["status_type_id"], name: "index_orders_on_status_type_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -89,14 +88,21 @@ ActiveRecord::Schema.define(version: 2018_11_09_173128) do
     t.index ["status_type_id"], name: "index_products_on_status_type_id"
   end
 
-  create_table "status_types", force: :cascade do |t|
-    t.string "name"
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "name"
+    t.text "address"
+    t.text "city"
+    t.text "state"
+    t.integer "zip"
+    t.integer "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "statuses", force: :cascade do |t|
-    t.string "type"
+  create_table "status_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,19 +112,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_173128) do
     t.decimal "PST"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_meta", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.integer "phone"
-    t.string "address"
-    t.string "email"
-    t.string "credit_card_number"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_meta_on_user_id"
+    t.string "province"
   end
 
   create_table "users", force: :cascade do |t|
@@ -126,6 +120,13 @@ ActiveRecord::Schema.define(version: 2018_11_09_173128) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
