@@ -31,11 +31,12 @@ class OrderController < ApplicationController
       if(new_order.save!)
         flash[:notice] = "Your order has been placed."
         session[:cart] = []
-        redirect_to root_path
+      else
+        flash[:alert] = new_order.errors.message
       end
-
     end
 
+    redirect_to root_path
 
   end
 
