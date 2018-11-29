@@ -8,7 +8,8 @@ class OrderController < ApplicationController
       # Order Table
       new_order = Order.new(user_id: current_user.id,
                             total_price: session[:total_price].to_f,
-                            status_type_id: @order_status.id)
+                            status_type_id: @order_status.id,
+                            stripe_cus_id: session[:stripe_cus_id])
       new_order.save()
 
 
@@ -34,6 +35,9 @@ class OrderController < ApplicationController
       else
         flash[:alert] = new_order.errors.message
       end
+
+    else
+      flash[:alert] = "An error occured. Please try again."
     end
 
     redirect_to root_path
@@ -42,6 +46,13 @@ class OrderController < ApplicationController
 
   private
   def set_default_status
-    @order_status = StatusType.where(name: "Pending Payment").first()
+
+    if session[:paid]
+      @order_status = StatusType.where(name: "Paid").first()
+    else
+      @order_status = StatusType.where(name: "Pending Payment").first()
+    end
+
+
   end
 end

@@ -27,8 +27,9 @@ class CartController < ApplicationController
     add_breadcrumb "Cart", cart_index_path
     add_breadcrumb "Checkout", checkout_path
 
+    @total_amount = (session[:total_price].to_f * 100 ).round(0)
     province = @profile.tax
-    @taxes = (province.GST + province.PST)
+    @taxes = (province.GST + province.PST).round(2)
   end
 
 end
