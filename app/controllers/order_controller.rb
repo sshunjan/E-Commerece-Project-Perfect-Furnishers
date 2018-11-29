@@ -6,9 +6,9 @@ class OrderController < ApplicationController
 
     if(params[:checkout])
       # Order Table
-      new_order = Order.new(user_id: 1,
-                        total_price: session[:total_price].to_f,
-                        status_type_id: @order_status.id)
+      new_order = Order.new(user_id: current_user.id,
+                            total_price: session[:total_price].to_f,
+                            status_type_id: @order_status.id)
       new_order.save()
 
 

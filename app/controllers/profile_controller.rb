@@ -1,7 +1,4 @@
 class ProfileController < ApplicationController
-
-
-
   def index
     add_breadcrumb "Profile", :profile_index_path
   end
@@ -10,14 +7,21 @@ class ProfileController < ApplicationController
     add_breadcrumb "Profile", :profile_create_path
 
     if(params[:firstName])
+
+      user = User.find(current_user.id)
+      user.username = params[:firstName]
+      user.save()
+
+      @tax = Tax.find(params[:province])
+
       profile = Profile.new()
       profile.user = current_user
       profile.name = "#{params[:firstName]}  #{params[:lastName]}"
       profile.address = params[:address]
       profile.city = params[:city]
-      profile.state = params[:province]
-      profile.zip = params[:zip].to_i
-      profile.phone = params[:zip].to_i
+      profile.tax = @tax
+      profile.zip = params[:zip]
+      profile.phone = params[:phone].to_i
       profile.save()
 
       redirect_to profile_index_path

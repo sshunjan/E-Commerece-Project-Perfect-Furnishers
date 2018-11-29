@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_171002) do
+ActiveRecord::Schema.define(version: 2018_11_23_185917) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -93,11 +93,12 @@ ActiveRecord::Schema.define(version: 2018_11_23_171002) do
     t.text "name"
     t.text "address"
     t.text "city"
-    t.text "state"
-    t.integer "zip"
     t.integer "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tax_id"
+    t.string "zip"
+    t.index ["tax_id"], name: "index_profiles_on_tax_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_171002) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "visible"
   end
 
   create_table "taxes", force: :cascade do |t|

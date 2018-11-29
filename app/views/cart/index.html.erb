@@ -31,7 +31,12 @@
     </tbody>
   </table>
   <% if user_signed_in?%>
-    <a class="btn btn-secondary btn-lg btn-block" href="<%= checkout_path%>" role="button">Checkout >></a>
+    <% if current_user.username %>
+      <a class="btn btn-secondary btn-lg btn-block" href="<%= checkout_path%>" role="button">Checkout >></a>
+    <% else %>
+      <a class="btn btn-secondary btn-lg btn-block" href="<%= profile_create_path%>" role="button">Please fill out your profile >></a>
+    <% end %>
+
   <% else%>
     <a class="btn btn-secondary btn-lg btn-block" href="<%= new_user_session_path %>" role="button">Please sign in to continue >></a>
   <% end%>
