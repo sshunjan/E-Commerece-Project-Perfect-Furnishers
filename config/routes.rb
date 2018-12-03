@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'charges/new'
+  get 'charges/create'
   get 'profile/index'
   get 'profile/create'
   get 'profile/update'
@@ -19,6 +21,10 @@ Rails.application.routes.draw do
 
   #Orders
   get 'order/add_order', to: 'order#add_order'
+
+  # Stripe routes
+  resources :charges, only: [:new, :create]
+
 
 
   resources :products, only: [:show, :index]

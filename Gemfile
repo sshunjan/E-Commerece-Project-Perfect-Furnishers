@@ -50,7 +50,9 @@ gem 'bootstrap', '~> 4.1.3' # bootstrap gem
 
 gem 'kaminari' # pagination
 
-gem "breadcrumbs_on_rails"
+gem "breadcrumbs_on_rails" # breadcrumbs
+
+gem 'stripe' # Stripe Payment
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
