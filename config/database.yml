@@ -25,6 +25,6 @@ production:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-  database: perfectfurnishers_production
-  username: simranjeetsinghhunjan@gmail.com
+  database: myapp_production
+  username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
