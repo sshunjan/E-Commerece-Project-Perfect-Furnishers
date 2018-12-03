@@ -3,6 +3,9 @@ class Order < ApplicationRecord
 
   belongs_to :user
   belongs_to :status_type
+
   has_many :ordered_products, dependent: :destroy
   has_many :products, through: :ordered_products, dependent: :destroy
+  accepts_nested_attributes_for :ordered_products
+
 end
