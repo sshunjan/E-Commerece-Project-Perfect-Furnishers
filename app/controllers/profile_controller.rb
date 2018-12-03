@@ -10,12 +10,10 @@ class ProfileController < ApplicationController
 
       user = User.find(current_user.id)
       user.username = params[:firstName]
-      user.save()
 
       @tax = Tax.find(params[:province])
 
       profile = Profile.new()
-      profile.user = current_user
       profile.name = "#{params[:firstName]}  #{params[:lastName]}"
       profile.address = params[:address]
       profile.city = params[:city]
@@ -23,6 +21,9 @@ class ProfileController < ApplicationController
       profile.zip = params[:zip]
       profile.phone = params[:phone].to_i
       profile.save()
+
+      user.profile = profile
+      user.save()
 
       redirect_to profile_index_path
     end

@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def fetch_profile
     if user_signed_in?
-      @profile = Profile.where(user_id: current_user[:id]).first()
+      @profile = current_user.profile
     end
   end
 end

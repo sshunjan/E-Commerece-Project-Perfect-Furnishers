@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_210859) do
+ActiveRecord::Schema.define(version: 2018_12_03_212819) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_210859) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
     t.text "name"
     t.text "address"
     t.text "city"
@@ -102,7 +101,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_210859) do
     t.integer "tax_id"
     t.string "zip"
     t.index ["tax_id"], name: "index_profiles_on_tax_id"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "status_types", force: :cascade do |t|
@@ -130,7 +128,9 @@ ActiveRecord::Schema.define(version: 2018_12_03_210859) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "profile_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["profile_id"], name: "index_users_on_profile_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

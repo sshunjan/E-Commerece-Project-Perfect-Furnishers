@@ -7,6 +7,8 @@ class OrderController < ApplicationController
     if(params[:checkout])
       # Order Table
       new_order = Order.new(user_id: current_user.id,
+                            GST: current_user.profile.tax.GST,
+                            PST: current_user.profile.tax.PST,
                             total_price: session[:total_price].to_f,
                             status_type_id: @order_status.id,
                             stripe_cus_id: session[:stripe_cus_id])
