@@ -18,6 +18,6 @@ ActiveAdmin.register User do
     column :username
     column :email
     column :encrypted_password
-    column :profile
+    column :profile_id
   end
 end

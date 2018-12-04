@@ -22,7 +22,7 @@ class ProfileController < ApplicationController
       profile.phone = params[:phone].to_i
       profile.save()
 
-      user.profile = profile
+      user.profile_id = profile.id
       user.save()
 
       redirect_to profile_index_path
@@ -32,4 +32,6 @@ class ProfileController < ApplicationController
   def update
     add_breadcrumb "Profile", :profile_update_path
   end
+
+
 end

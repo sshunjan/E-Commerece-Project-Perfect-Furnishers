@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :fetch_provinces
   before_action :fetch_profile
 
+
   add_breadcrumb "Home", :root_path, :title => "Back to the Index"
 
 
@@ -20,9 +21,14 @@ class ApplicationController < ActionController::Base
     @provinces = Tax.all()
   end
 
+  private
   def fetch_profile
     if user_signed_in?
-      @profile = current_user.profile
+      @profile_id = current_user.profile_id
+
+      if @profile_id
+        @profile = Profile.find(@profile_id)
+      end
     end
   end
 end
